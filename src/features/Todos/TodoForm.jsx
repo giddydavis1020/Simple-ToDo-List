@@ -1,29 +1,26 @@
 import TextInputWithLabel from '../../shared/TextInputWithLabel.jsx';
 import { useRef, useState } from 'react';
 import { isValidTodoTitle } from '../../utils/todoValidation.js';
-
+import styles from './TodoForm.module.css';
 
 function TodoForm({ onAddTodo }) {
     const inputRef = useRef();
     const [workingTodoTitle, setWorkingTodoTitle] = useState('');
 
-
     const handleAddTodo = (event) => {
         event.preventDefault();
 
-
         const todoTitle = workingTodoTitle.trim();
 
-        if (todoTitle && todoTitle !== "") {
-            onAddTodo(workingTodoTitle);
+        if (todoTitle && todoTitle !== '') {
+            onAddTodo(todoTitle);
             setWorkingTodoTitle('');
             inputRef.current.focus();
         }
     };
 
-
     return (
-        <form onSubmit={handleAddTodo}>
+        <form className={styles.form} onSubmit={handleAddTodo}>
             <TextInputWithLabel
                 ref={inputRef}
                 value={workingTodoTitle}
@@ -31,9 +28,15 @@ function TodoForm({ onAddTodo }) {
                 elementId="todoTitle"
                 labelText="Todo"
             />
-            <button disabled={!isValidTodoTitle(workingTodoTitle)}>Add Todo</button>
-        </form>
 
+            <button
+                className={styles.addButton}
+                type="submit"
+                disabled={!isValidTodoTitle(workingTodoTitle)}
+            >
+                Add Todo
+            </button>
+        </form>
     );
 }
 

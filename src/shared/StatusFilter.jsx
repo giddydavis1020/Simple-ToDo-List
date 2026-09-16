@@ -1,4 +1,5 @@
 import { useSearchParams } from 'react-router';
+import styles from './TodoControls.module.css';
 
 function StatusFilter() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -15,9 +16,16 @@ function StatusFilter() {
     };
 
     return (
-        <div>
-            <label htmlFor="statusFilter">Show:</label>
+        <div className={styles.control}>
+            <label
+                className={styles.label}
+                htmlFor="statusFilter"
+            >
+                Show:
+            </label>
+
             <select
+                className={styles.select}
                 id="statusFilter"
                 value={currentStatus}
                 onChange={event => handleStatusChange(event.target.value)}

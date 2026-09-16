@@ -1,0 +1,181 @@
+.page {
+    width: min(100% - 2rem, 800px);
+    margin: 0 auto;
+    padding: 3rem 0 4rem;
+}
+
+.heading {
+    margin: 0 0 0.5rem;
+    color: #f8fafc;
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    line-height: 1.2;
+}
+
+.description {
+    margin: 0 0 2rem;
+    color: #94a3b8;
+    line-height: 1.6;
+}
+
+.card {
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+
+    background-color: #111827;
+    border: 1px solid #293548;
+    border-radius: 1rem;
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+.cardHeading {
+    margin: 0 0 1.25rem;
+    color: #f8fafc;
+    font-size: 1.2rem;
+}
+
+.accountInfo {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.accountRow {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #293548;
+}
+
+.accountRow:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.label {
+    color: #94a3b8;
+    font-weight: 600;
+}
+
+.value {
+    color: #f1f5f9;
+    text-align: right;
+}
+
+.status {
+    color: #86efac;
+    font-weight: 600;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.stat {
+    padding: 1.25rem;
+
+    text-align: center;
+
+    background-color: #182233;
+    border: 1px solid #293548;
+    border-radius: 0.75rem;
+}
+
+.statNumber {
+    display: block;
+    margin-bottom: 0.25rem;
+
+    color: #60a5fa;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.statLabel {
+    color: #94a3b8;
+    font-size: 0.875rem;
+}
+
+.progressSection {
+    margin-top: 1.5rem;
+}
+
+.progressHeader {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+    margin-bottom: 0.5rem;
+
+    color: #cbd5e1;
+    font-weight: 600;
+}
+
+.progressTrack {
+    width: 100%;
+    height: 12px;
+
+    overflow: hidden;
+
+    background-color: #293548;
+    border-radius: 999px;
+}
+
+.progressBar {
+    height: 100%;
+
+    background-color: #3b82f6;
+    border-radius: 999px;
+
+    transition: width 0.3s ease;
+}
+
+.loading {
+    margin: 0;
+    padding: 1rem;
+
+    background-color: #101e33;
+    color: #93c5fd;
+
+    border: 1px solid #1e3a5f;
+    border-radius: 0.75rem;
+
+    font-weight: 600;
+}
+
+.error {
+    margin: 0;
+    padding: 1rem;
+
+    background-color: #2b1217;
+    color: #fecaca;
+
+    border: 1px solid #7f1d1d;
+    border-radius: 0.75rem;
+}
+
+@media (max-width: 640px) {
+    .page {
+        width: min(100% - 1rem, 800px);
+        padding-top: 2rem;
+    }
+
+    .card {
+        padding: 1.25rem;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .accountRow {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .value {
+        text-align: left;
+    }
+}

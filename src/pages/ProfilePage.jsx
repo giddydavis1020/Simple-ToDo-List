@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext.jsx';
+import styles from './ProfilePage.module.css';
 
 function ProfilePage() {
     const { email, token } = useAuth();
@@ -9,6 +10,7 @@ function ProfilePage() {
         completed: 0,
         active: 0,
     });
+
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
@@ -73,33 +75,126 @@ function ProfilePage() {
             : 0;
 
     return (
-        <div>
-            <h2>Profile</h2>
+        <main className={styles.page}>
+            <h2 className={styles.heading}>Profile</h2>
 
-            <h3>Account Information</h3>
-            <p>Name: {email}</p>
-            <p>Status: {token ? 'Authenticated' : 'Not authenticated'}</p>
+            <p className={styles.description}>
+                View your account information and todo progress.
+            </p>
 
-            <h3>Todo Statistics</h3>
+            <section className={styles.card}>
+                <h3 className={styles.cardHeading}>
+                    Account Information
+                </h3>
 
-            {loading && <p>Loading statistics...</p>}
+                <div className={styles.accountInfo}>
+                    <div className={styles.accountRow}>
+                        <span className={styles.label}>Name</span>
+                        <span className={styles.value}>
+                            {email || 'Unavailable'}
+                        </span>
+                    </div>
 
-            {error && <p>{error}</p>}
-
-            {!loading && !error && (
-                <div>
-                    <p>Total todos: {todoStats.total}</p>
-                    <p>Completed todos: {todoStats.completed}</p>
-                    <p>Active todos: {todoStats.active}</p>
-
-                    {todoStats.total > 0 && (
-                        <p>
-                            Completion: {completionPercentage}%
-                        </p>
-                    )}
+                    <div className={styles.accountRow}>
+                        <span className={styles.label}>Status</span>
+                        <span
+                            className={`${styles.value} ${
+                                token ? styles.status : ''
+                            }`}
+                        >
+                            {token
+                                ? 'Authenticated'
+                                : 'Not authenticated'}
+                        </span>
+                    </div>
                 </div>
-            )}
-        </div>
+            </section>
+
+            <section className={styles.card}>
+                <h3 className={styles.cardHeading}>
+                    Todo Statistics
+                </h3>
+
+                {loading && (
+                    <p
+                        className={styles.loading}
+                        role="status"
+                        aria-live="polite"
+                    >
+                        Loading statistics...
+                    </p>
+                )}
+
+                {error && (
+                    <p
+                        className={styles.error}
+                        role="alert"
+                    >
+                        {error}
+                    </p>
+                )}
+
+                {!loading && !error && (
+                    <>
+                        <div className={styles.stats}>
+                            <div className={styles.stat}>
+                                <span className={styles.statNumber}>
+                                    {todoStats.total}
+                                </span>
+                                <span className={styles.statLabel}>
+                                    Total Todos
+                                </span>
+                            </div>
+
+                            <div className={styles.stat}>
+                                <span className={styles.statNumber}>
+                                    {todoStats.completed}
+                                </span>
+                                <span className={styles.statLabel}>
+                                    Completed
+                                </span>
+                            </div>
+
+                            <div className={styles.stat}>
+                                <span className={styles.statNumber}>
+                                    {todoStats.active}
+                                </span>
+                                <span className={styles.statLabel}>
+                                    Active
+                                </span>
+                            </div>
+                        </div>
+
+                        {todoStats.total > 0 && (
+                            <div className={styles.progressSection}>
+                                <div className={styles.progressHeader}>
+                                    <span>Completion</span>
+                                    <span>
+                                        {completionPercentage}%
+                                    </span>
+                                </div>
+
+                                <div
+                                    className={styles.progressTrack}
+                                    role="progressbar"
+                                    aria-label="Todo completion"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                                    aria-valuenow={completionPercentage}
+                                >
+                                    <div
+                                        className={styles.progressBar}
+                                        style={{
+                                            width: `${completionPercentage}%`,
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                        )}
+                    </>
+                )}
+            </section>
+        </main>
     );
 }
 

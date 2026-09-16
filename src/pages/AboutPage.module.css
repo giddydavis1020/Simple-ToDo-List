@@ -1,0 +1,85 @@
+.page {
+    width: min(100% - 2rem, 800px);
+    margin: 0 auto;
+    padding: 3rem 0 4rem;
+}
+
+.hero {
+    margin-bottom: 2rem;
+}
+
+.heading {
+    margin: 0 0 0.75rem;
+
+    color: #f8fafc;
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    line-height: 1.2;
+}
+
+.intro {
+    max-width: 650px;
+    margin: 0;
+
+    color: #94a3b8;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.card {
+    padding: 1.5rem;
+
+    background-color: #111827;
+    border: 1px solid #293548;
+    border-radius: 1rem;
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+
+    transition:
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.card:hover {
+    border-color: #475569;
+    transform: translateY(-2px);
+}
+
+.cardHeading {
+    margin: 0 0 1rem;
+
+    color: #f8fafc;
+    font-size: 1.2rem;
+}
+
+.list {
+    margin: 0;
+    padding-left: 1.25rem;
+
+    color: #cbd5e1;
+    line-height: 1.9;
+}
+
+.list li::marker {
+    color: #60a5fa;
+}
+
+@media (max-width: 640px) {
+    .page {
+        width: min(100% - 1rem, 800px);
+        padding-top: 2rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 1.25rem;
+    }
+}
