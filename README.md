@@ -1,73 +1,55 @@
 # My Todos
 
-A responsive full-stack Todo application built with React and Vite. My Todos allows authenticated users to create, organize, edit, complete, filter, and sort tasks through a clean and accessible interface.
+A responsive Todo application built with React that allows users to create, organize, edit, complete, search, filter, and sort their tasks. The application uses authentication and a backend API so todos persist between sessions.
 
 ## Features
 
-* User authentication and protected routes
-* Create new todos
-* Edit existing todos
-* Mark todos as completed
-* Filter todos by title
-* Filter by active, completed, or all todos
-* Sort todos by creation date or title
-* Sort in ascending or descending order
-* View todo statistics from the Profile page
-* View completion percentage
-* Loading, error, and empty states
-* Input validation
-* Responsive design for mobile, tablet, and desktop
-* Keyboard-accessible navigation and controls
-* Custom dark interface using CSS Modules
-* Custom 404 page for invalid routes
+- User authentication with login and logout
+- Create new todos
+- Edit existing todos
+- Mark todos as completed
+- View all, active, or completed todos
+- Search todos by title
+- Sort todos by title or creation date
+- Sort in ascending or descending order
+- View todo statistics from the Profile page
+- Protected routes for authenticated users
+- Persistent todo data using a backend API
+- Loading, error, and empty states
+- Responsive design for desktop and mobile devices
+- Accessible form labels, focus states, and controls
 
-## Technologies
+## Technologies Used
 
-* React
-* React Router
-* Vite
-* JavaScript
-* CSS Modules
-* REST API
-* Context API
-* `useReducer`
-* `useMemo`
-* Custom React hooks
+- React
+- React Router
+- Vite
+- JavaScript
+- CSS Modules
+- HTML
+- CTD Todo List API
 
-## Security and Validation
+## Screenshots
 
-The application includes several practices designed to improve security and data integrity:
+### Desktop View
 
-* Protected routes prevent unauthenticated access to todo and profile pages
-* Authentication state is managed through React Context
-* API requests include credentials when required
-* CSRF tokens are included with protected API requests
-* Password fields use protected password inputs
-* Todo titles are validated before submission
-* Empty and whitespace-only todos are rejected
-* Todo titles are limited to 200 characters
-* API failures are handled with user-facing error states
-* No authentication credentials are hardcoded into the application
+![Todo App Desktop View](./screenshots/web.png)
 
-## Accessibility
+### Mobile View
 
-The interface includes accessibility considerations such as:
+![Todo App Mobile View](./screenshots/phone.png)
 
-* Semantic HTML elements
-* Associated labels for form controls
-* Visible keyboard focus indicators
-* Keyboard-accessible interactive elements
-* Accessible loading and error messages
-* ARIA attributes for dynamic status messages
-* Accessible progress information
-* Sufficient text and background contrast
-* Touch-friendly controls with minimum target sizes
+## Getting Started
 
-## Responsive Design
+### Prerequisites
 
-The application is designed to work across mobile, tablet, and desktop screen sizes. Responsive layouts adjust navigation, forms, filters, todo controls, statistics, and action buttons for smaller displays.
+Before running the project, make sure you have:
 
-## Installation
+- Node.js
+- npm
+- Git
+
+### Installation
 
 1. Clone the repository:
 
@@ -75,22 +57,22 @@ The application is designed to work across mobile, tablet, and desktop screen si
 git clone https://github.com/giddydavis1020/ctd-swag.git
 ```
 
-2. Navigate into the project directory:
+2. Navigate into the project:
 
 ```bash
 cd ctd-swag
 ```
 
-3. Install dependencies:
+3. Install the dependencies:
 
 ```bash
 npm install
 ```
 
-4. Create a `.env` file in the project root and configure the API target:
+4. Create a `.env` file in the project root and add:
 
 ```env
-VITE_TARGET=your_api_url_here
+VITE_TARGET=https://ctd-learns-node-l42tx.ondigitalocean.app
 ```
 
 5. Start the development server:
@@ -99,57 +81,60 @@ VITE_TARGET=your_api_url_here
 npm run dev
 ```
 
-The Vite development server is configured to run on:
+6. Open the local address displayed by Vite in your browser.
 
-```text
-http://localhost:3001
+The development server is configured to run on port `3001`.
+
+## Available Scripts
+
+### Development
+
+```bash
+npm run dev
 ```
 
-## Production Build
+Starts the Vite development server.
 
-Create a production build with:
+### Build
 
 ```bash
 npm run build
 ```
 
-The optimized production files will be generated in the `dist` directory.
+Creates an optimized production build of the application.
 
-## Application Routes
+### Preview
 
-| Route      | Description                                | Authentication |
-| ---------- | ------------------------------------------ | -------------- |
-| `/`        | Redirects to the appropriate starting page | No             |
-| `/login`   | User login                                 | No             |
-| `/about`   | Application information and features       | No             |
-| `/todos`   | Todo management dashboard                  | Required       |
-| `/profile` | Account information and todo statistics    | Required       |
-| `*`        | Custom 404 page                            | No             |
-
-## Project Structure
-
-```text
-src/
-├── components/
-├── contexts/
-├── features/
-│   └── Todos/
-├── pages/
-├── reducers/
-├── shared/
-├── utils/
-├── App.jsx
-├── App.css
-├── index.css
-└── main.jsx
+```bash
+npm run preview
 ```
 
-## Todo Management
+Runs the production build locally for testing.
 
-Todo data is retrieved and updated through API requests. The application supports creating, reading, updating, completing, filtering, and sorting todos while providing feedback for loading and failed operations.
+## Design Decisions
 
-Optimistic UI updates are used for certain todo operations so the interface can respond immediately while the application communicates with the API.
+I chose CSS Modules to keep component styles organized and scoped to individual components.
 
-## Author
+The application uses a dark color scheme with blue accents to create a clean and consistent interface. Form controls, navigation elements, todo items, and buttons use consistent spacing and styling throughout the application.
 
-Developed by Dante as part of the Code the Dream React curriculum.
+The layout is responsive so controls stack vertically on smaller screens while making better use of available space on larger displays. Interactive elements include hover, focus, disabled, and active states to provide clear feedback to users.
+
+## Future Improvements
+
+Some features I would like to add in the future include:
+
+- Todo deletion
+- Todo priority levels
+- Due dates and reminders
+- Categories or tags
+- Additional profile customization
+- Additional accessibility improvements
+- More customization options for the interface
+
+## License
+
+This project is licensed under the MIT License.
+
+## Contact
+
+GitHub: [giddydavis1020](https://github.com/giddydavis1020)
