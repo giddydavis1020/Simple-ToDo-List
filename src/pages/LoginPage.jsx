@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import { useAuth } from '../contexts/AuthContext.jsx';
+import styles from './LoginPage.module.css';
 
 function LoginPage() {
     const { login, isAuthenticated } = useAuth();
@@ -41,35 +42,79 @@ function LoginPage() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            {authError && <p>{authError}</p>}
+        <main className={styles.page}>
+            <section className={styles.card}>
+                <h2 className={styles.heading}>Welcome Back</h2>
 
-            <div>
-                <label htmlFor="email">Email</label>
-                <input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={event => setEmail(event.target.value)}
-                    required
-                />
-            </div>
+                <p className={styles.description}>
+                    Log in to manage your todos and keep track of your tasks.
+                </p>
 
-            <div>
-                <label htmlFor="password">Password</label>
-                <input
-                    id="password"
-                    type="password"
-                    value={password}
-                    onChange={event => setPassword(event.target.value)}
-                    required
-                />
-            </div>
+                <form
+                    className={styles.form}
+                    onSubmit={handleSubmit}
+                >
+                    {authError && (
+                        <p
+                            className={styles.error}
+                            role="alert"
+                        >
+                            {authError}
+                        </p>
+                    )}
 
-            <button type="submit" disabled={isLoggingOn}>
-                {isLoggingOn ? 'Logging in...' : 'Log On'}
-            </button>
-        </form>
+                    <div className={styles.field}>
+                        <label
+                            className={styles.label}
+                            htmlFor="email"
+                        >
+                            Email
+                        </label>
+
+                        <input
+                            className={styles.input}
+                            id="email"
+                            type="email"
+                            value={email}
+                            onChange={event =>
+                                setEmail(event.target.value)
+                            }
+                            autoComplete="email"
+                            required
+                        />
+                    </div>
+
+                    <div className={styles.field}>
+                        <label
+                            className={styles.label}
+                            htmlFor="password"
+                        >
+                            Password
+                        </label>
+
+                        <input
+                            className={styles.input}
+                            id="password"
+                            type="password"
+                            value={password}
+                            onChange={event =>
+                                setPassword(event.target.value)
+                            }
+                            autoComplete="current-password"
+                            required
+                        />
+                    </div>
+
+                    <button
+                        className={styles.button}
+                        type="submit"
+                        disabled={isLoggingOn}
+                    >
+                        {isLoggingOn ? 'Logging in...' : 'Log In'}
+                    </button>
+                </form>
+            </section>
+        </main>
     );
 }
 

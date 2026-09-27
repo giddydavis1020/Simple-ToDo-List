@@ -1,0 +1,78 @@
+.control {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    min-width: 0;
+}
+
+.sortControls {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.sortField {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.4rem;
+    min-width: 140px;
+}
+
+.label {
+    color: #cbd5e1;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.input,
+.select {
+    width: 100%;
+    min-height: 44px;
+    padding: 0.65rem 0.75rem;
+
+    border: 1px solid #374151;
+    border-radius: 0.5rem;
+
+    background-color: #1f2937;
+    color: #f8fafc;
+
+    font: inherit;
+    font-size: 1rem;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.input:hover,
+.select:hover {
+    border-color: #64748b;
+    background-color: #253244;
+}
+
+.input:focus,
+.select:focus {
+    border-color: #60a5fa;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+}
+
+.input::placeholder {
+    color: #94a3b8;
+}
+
+.select {
+    cursor: pointer;
+}
+
+@media (max-width: 640px) {
+    .sortControls {
+        flex-direction: column;
+    }
+
+    .sortField {
+        width: 100%;
+    }
+}

@@ -1,7 +1,16 @@
 import { forwardRef } from 'react';
 
 const TextInputWithLabel = forwardRef(
-    ({ value, onChange, elementId, labelText }, ref) => {
+    (
+        {
+            value,
+            onChange,
+            elementId,
+            labelText,
+            maxLength,
+        },
+        ref
+    ) => {
         return (
             <>
                 <label htmlFor={elementId}>{labelText}</label>
@@ -11,8 +20,8 @@ const TextInputWithLabel = forwardRef(
                     value={value}
                     onChange={onChange}
                     id={elementId}
+                    maxLength={maxLength}
                 />
-            
             </>
         );
     }

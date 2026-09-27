@@ -1,6 +1,9 @@
 import { useRef, useState } from 'react';
 import TextInputWithLabel from '../../../shared/TextInputWithLabel.jsx';
-import { isValidTodoTitle } from '../../../utils/todoValidation.js';
+import {
+    isValidTodoTitle,
+    MAX_TODO_TITLE_LENGTH,
+} from '../../../utils/todoValidation.js';
 
 function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
     const [isEditing, setIsEditing] = useState(false);
@@ -23,18 +26,19 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
 
         event.preventDefault();
 
-        if (!isValidTodoTitle(workingTitle)) {
+        const todoTitle = workingTitle.trim();
+
+        if (!isValidTodoTitle(todoTitle)) {
             return;
         }
 
         onUpdateTodo({
             ...todo,
-            title: workingTitle,
+            title: todoTitle,
         });
 
         setIsEditing(false);
     };
-    
 
     return (
         <li>
@@ -44,9 +48,11 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
                         ref={inputRef}
                         value={workingTitle}
                         onChange={handleEdit}
-                        elementId="todoTitle"
+                        elementId={`todoTitle-${todo.id}`}
                         labelText="Todo"
+                        maxLength={MAX_TODO_TITLE_LENGTH}
                     />
+
                     <button
                         type="button"
                         onClick={handleCancel}
@@ -58,7 +64,7 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
                         type="submit"
                         disabled={!isValidTodoTitle(workingTitle)}
                     >
-                        Update 
+                        Update
                     </button>
                 </form>
             ) : (
@@ -68,6 +74,7 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
                         checked={todo.isCompleted}
                         onChange={() => onCompleteTodo(todo.id)}
                     />
+
                     <span onClick={() => setIsEditing(true)}>
                         {todo.title}
                     </span>
@@ -75,7 +82,6 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
             )}
         </li>
     );
-
 }
 
 export default TodoListItem;
